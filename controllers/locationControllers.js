@@ -1,7 +1,11 @@
 const locationModal = require('../models/location')
 
 //GET all locations
+const getAllLocations = async (req, res) => {
+    const locations = await locationModal.find({}).sort({createdAt: -1})
 
+    res.status(200).json(locations)
+}
 //GET single locations
 
 //POST new location
@@ -18,5 +22,6 @@ const createLocation = async (req,res) => {
 }
 
 module.exports = {
+    getAllLocations,
     createLocation
 }
