@@ -5,6 +5,7 @@ const mongoose = require('mongoose')
 
 const routeLocation = require('./routes/routeLocation')
 const routerDevice = require('./routes/routeDevice')
+const routerLogin = require('./routes/routeLogin')
 
 //express app
 const app =Express()
@@ -20,6 +21,7 @@ app.use((req,res,next) => {
 //routes
 app.use('/location', routeLocation)
 app.use('/device', routerDevice)
+app.use('/login', routerLogin)
 
 //connect to db
 mongoose.connect(process.env.MONGO_URI)

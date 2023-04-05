@@ -15,4 +15,10 @@ const locationSchema = new Schema({
 
 }, {timestamps:true})
 
+locationSchema.statics.login = async function (l_name) {
+    const location = await this.findOne({ l_name });
+    if (!location) throw Error("location not found");
+    return location;
+};
+
 module.exports = mongoose.model('locations', locationSchema)
