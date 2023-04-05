@@ -1,8 +1,8 @@
 const deviceModal = require('../models/device')
 
-//GET all locations
+//GET all ddevices
 
-//GET single locations
+//GET single device
 const getDevice = async (req,res) => {
     try {
         const {l_name} = req.params
@@ -14,7 +14,7 @@ const getDevice = async (req,res) => {
     }
 }
 
-//POST new location
+//POST new device
 const createDevice = async (req,res) => {
     const {l_name,s_number, d_type} = req.body
     //add doc to db
@@ -27,7 +27,21 @@ const createDevice = async (req,res) => {
     }
 }
 
+//DELETE device
+const deleteDevice = async(req,res)=>{
+    try {
+        const {l_name} = req.params;
+        const deleteDevice = await deviceModal.findOneAndDelete(l_name)
+        if (!deleteDevice) throw Error("Not found")
+        res.Status(200).json(device)
+    } catch (error) {
+        res.status(400).json({error:error.message})
+    }
+}
+
+
 module.exports = {
     getDevice,
-    createDevice
+    createDevice,
+    deleteDevice
 }

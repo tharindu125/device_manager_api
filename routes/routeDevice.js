@@ -2,19 +2,22 @@ const Express = require('express')
 
 const {
     getDevice,
-    createDevice
+    createDevice,
+    deleteDevice
 } = require('../controllers/deviceControllers')
 
 
 const router = Express.Router()
 
-//GET all location
+//GET all devices
 
-//GeT single llocation
+//GeT single devices
 router.get('/:l_name', getDevice)
 
-//POST location
+//POST devices
 router.post('/', createDevice)
 
+//DELETE devices
+router.delete('/:l_name', deleteDevice)
 
 module.exports = router
